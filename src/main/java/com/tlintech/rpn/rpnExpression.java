@@ -43,6 +43,10 @@ public class rpnExpression {
                 a = Integer.parseInt(element1.toString());
                 b = Integer.parseInt(element2.toString());
 
+                if (token.equals("q")) {
+                    System.exit(0);
+                }
+
                 if (token.equals("*")) {
 
                     x = b * a;
@@ -68,6 +72,10 @@ public class rpnExpression {
                 // System.out.printf("push = <%d>", x);
 
             } else {
+                if (token.equals("q")) {
+
+                    System.exit(0);
+                }
                     // determine token is numeric ?
                     if (token.matches(".*\\d.*")) {
                         // System.out.printf("its a number! <%s>\n",token);
