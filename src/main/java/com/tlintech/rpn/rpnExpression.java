@@ -22,9 +22,9 @@ public class rpnExpression {
         Stack st = new Stack();
         Object element1;
         Object element2;
-        int x=0;
-        int a=0;
-        int b=0;
+        double x=0.0;
+        double a=0.0;
+        double b=0.0;
         stringExpression = setexpr;
         tokens = new StringTokenizer(stringExpression);
         numtokens = tokens.countTokens();
@@ -40,50 +40,33 @@ public class rpnExpression {
                 element2 = st.pop();
                 // System.out.printf("pop = <%s>\n", element1);
                 // System.out.printf("pop = <%s>\n", element2);
-                a = Integer.parseInt(element1.toString());
-                b = Integer.parseInt(element2.toString());
+                a = Double.parseDouble(element1.toString());
+                b = Double.parseDouble(element2.toString());
 
-                if (token.equals("q")) {
-                    System.exit(0);
-                }
+                if (token.equals("q")) { System.exit(0);}
+                if (token.equals("*")) { x = b * a; }
+                if (token.equals("+")) { x = b + a; }
+                if (token.equals("-")) { x = b - a; }
+                if (token.equals("/")) { x = b / a; }
 
-                if (token.equals("*")) {
-
-                    x = b * a;
-                }
-
-                if (token.equals("+")) {
-                    x = b + a;
-
-                }
-
-                if (token.equals("-")) {
-
-                    x = b - a;
-                }
-
-                if (token.equals("/")) {
-                        x = b / a;
-
-                }
                 // System.out.printf("result = <%d>", x);
-                System.out.printf("%d\n", x);
-                st.push(String.valueOf(x));
-                // System.out.printf("push = <%d>", x);
+                System.out.printf("%f\n", x);
+                st.push(Double.toString(x));
+                // System.out.printf("(1)push = <%f>", x);
 
             } else {
-                if (token.equals("q")) {
-
-                    System.exit(0);
-                }
+                if (token.equals("q")) { System.exit(0); }
                     // determine token is numeric ?
                     if (token.matches(".*\\d.*")) {
                         // System.out.printf("its a number! <%s>\n",token);
                         // System.out.printf("push = <%s>\n", token);
                         // push number to stack
                         st.push(token);
+                        // System.out.printf("(2)push = <%s>", token);
+
                     } else {
                         System.out.printf("its not a number nor an operator!\n");
+                        System.exit(0);
                     }
 
             }
