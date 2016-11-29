@@ -33,6 +33,16 @@ public class rpnExpression {
             token = tokens.nextToken();
             // System.out.printf("token=<%s>\n",token);
 
+            // if its a number then push to the stack
+            if (token.matches(".*\\d.*")) {
+                // System.out.printf("its a number! <%s>\n",token);
+                // System.out.printf("push = <%s>\n", token);
+                // push number to stack
+                st.push(token);
+                // System.out.printf("(2)push = <%s>", token);
+
+            }
+
             if ( token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/") ) {
 
                 // System.out.printf("its an operator! <%s>\n", token);
@@ -53,21 +63,6 @@ public class rpnExpression {
                 System.out.printf("%f\n", x);
                 st.push(Double.toString(x));
                 // System.out.printf("(1)push = <%f>", x);
-
-            } else {
-                if (token.equals("q")) { System.exit(0); }
-                    // determine token is numeric ?
-                    if (token.matches(".*\\d.*")) {
-                        // System.out.printf("its a number! <%s>\n",token);
-                        // System.out.printf("push = <%s>\n", token);
-                        // push number to stack
-                        st.push(token);
-                        // System.out.printf("(2)push = <%s>", token);
-
-                    } else {
-                        System.out.printf("its not a number nor an operator!\n");
-                        System.exit(0);
-                    }
 
             }
         }
